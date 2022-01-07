@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
-import { reset as resetForm } from 'redux-form' //action creator do redux-form que pode mexer no estado 
+import { reset as resetForm, initialize } from 'redux-form' //action creator do redux-form que pode mexer no estado 
 import { showTabs, selectTab } from '../common/tab/tabActions'
 
 const BASE_URL = 'http://localhost:3003/api'
@@ -32,4 +32,13 @@ export function create(values){
             e.response.data.errors.forEach(error => toastr.error('Erro!', error))
         })  
     }
+}
+
+export function showUpdate(billingCycle){
+    //redux-multi permite criar um array de action creators
+    return [
+        showTabs('tabUpdate'),
+        selectTab('tabUpdate'), 
+        initialize('billingCycleForm', billingCycle) //inicializa o form (pelo id) passando o ciclo de pagamento como parâmetro para o form
+    ]
 }

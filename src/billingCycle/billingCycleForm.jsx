@@ -38,4 +38,5 @@ class BillingCycleForm extends Component{
     }
 }
 //Liga o formulário ao redux, passando o id do form
-export default reduxForm({form: 'billingCycleForm'})(BillingCycleForm)
+export default reduxForm({form: 'billingCycleForm', destroyOnUnmount: false})(BillingCycleForm)
+//destroyOnUnmount não destrói os dados do formulário quando ele é destruído. Isso permite reusar o formulário sem que haja tantas construções e destruições do form
