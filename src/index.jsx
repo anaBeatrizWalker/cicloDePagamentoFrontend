@@ -9,8 +9,11 @@ import thunk from 'redux-thunk'
 import App from './main/app'
 import reducers from './main/reducers'
 
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ 
+      && window.__REDUX_DEVTOOLS_EXTENSION__()
+
 //Durante a criação da store, é aplicado um middleware que irá aguardar a resolução da promise
-const store = applyMiddleware(thunk, promise)(createStore)(reducers)
+const store = applyMiddleware(thunk, promise)(createStore)(reducers, devTools)
 
 ReactDOM.render(
     <Provider store={store}>
