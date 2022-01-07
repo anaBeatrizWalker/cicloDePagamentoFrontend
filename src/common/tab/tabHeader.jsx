@@ -1,12 +1,19 @@
 //Renderiza uma única aba
 import React, { Component } from "react";
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { selectTab } from './tabActions'
 
 class TabHeader extends Component{
     render(){
+        //Aba selecionada
+        const selected = this.props.tab.selected === this.props.target
         return (
-            <li>
+            <li className={selected ? 'active' : ''}>
                 <a href='javascript:;' 
                     data-toggle='tab' 
+                    onClick={() => this.props.selectTab(this.props.target)}
                     data-target={this.props.target}>
                     <i className={`fa fa-${this.props.icon}`}></i> {this.props.label}
                 </a>
@@ -14,9 +21,13 @@ class TabHeader extends Component{
         )
     }
 }
-export default TabHeader
+const mapStateToProps = state => ({tab: state.tab})
+
+const mapDispatchToProps = dispatch => bindActionCreators({selectTab}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(TabHeader)
 /*
 href: ignora a ref do link
 
-target: recebe por parâmetro e compara com o id do content para que o conteúdo correto seja exibido ao selecionar a tab
+target: é o id do conteúdo que será exibido
 */
