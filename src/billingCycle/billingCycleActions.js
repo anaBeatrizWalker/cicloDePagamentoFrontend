@@ -22,6 +22,10 @@ export function update(values){
     return submit(values, 'put')
 }
 
+export function remove(values){
+    return submit(values, 'delete')
+}
+
 function submit(values, method){
     return dispatch => {
         //pegando o id se tiver setado para update e delete
@@ -46,6 +50,14 @@ export function showUpdate(billingCycle){
         showTabs('tabUpdate'),
         selectTab('tabUpdate'), 
         initialize('billingCycleForm', billingCycle) //inicializa o form (pelo id) passando o ciclo de pagamento como parâmetro para o form
+    ]
+}
+
+export function showDelete(billingCycle){
+    return [
+        showTabs('tabDelete'),
+        selectTab('tabDelete'), 
+        initialize('billingCycleForm', billingCycle)
     ]
 }
 
