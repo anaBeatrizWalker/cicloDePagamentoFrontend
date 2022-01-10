@@ -31,7 +31,7 @@ function submit(values, method){
         //pegando o id se tiver setado para update e delete
         const id = values._id ? values._id : ''
         //axios['post']
-        axios[method](`${BASE_URL}/billingCycles${id}`, values)
+        axios[method](`${BASE_URL}/billingCycles/${id}`, values)
         .then(resp => {
             
             toastr.success('Sucesso!', 'Operação realizada com sucesso!')

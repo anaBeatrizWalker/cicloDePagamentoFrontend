@@ -5,6 +5,7 @@ import { reduxForm, Field } from 'redux-form'; //decorator e tag para os campos 
 
 import { init } from "./billingCycleActions";
 import labelAndInput from "../common/form/labelAndInput";
+import CreditList from "./creditList";
 
 class BillingCycleForm extends Component{
     render(){
@@ -13,29 +14,31 @@ class BillingCycleForm extends Component{
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className="box-body">
-                        <Field name='name' 
-                            component={labelAndInput}
-                            readOnly={readOnly}
-                            label='Nome' 
-                            cols='12 4' 
-                            placeholder='Informe um nome'>
-                        </Field>
+                    <Field name='name' 
+                        component={labelAndInput}
+                        readOnly={readOnly}
+                        label='Nome' 
+                        cols='12 4' 
+                        placeholder='Informe um nome'>
+                    </Field>
 
-                        <Field name='month' 
-                            component={labelAndInput}
-                            readOnly={readOnly}
-                            label='Mês' 
-                            cols='12 4' 
-                            placeholder='Informe o mês'>
-                        </Field>
+                    <Field name='month' 
+                        component={labelAndInput}
+                        readOnly={readOnly}
+                        label='Mês' 
+                        cols='12 4' 
+                        placeholder='Informe o mês'>
+                    </Field>
 
-                        <Field name='year' 
-                            component={labelAndInput}
-                            readOnly={readOnly}
-                            label='Ano' 
-                            cols='12 4' 
-                            placeholder='Informe o ano'>
-                        </Field>
+                    <Field name='year' 
+                        component={labelAndInput}
+                        readOnly={readOnly}
+                        label='Ano' 
+                        cols='12 4' 
+                        placeholder='Informe o ano'>
+                    </Field>
+
+                    <CreditList cols='12 6' readOnly={readOnly}/>
                 </div>
                 <div className="box-footer">
                     <button type="submit" className={`btn btn-${this.props.submitClass}`}>
