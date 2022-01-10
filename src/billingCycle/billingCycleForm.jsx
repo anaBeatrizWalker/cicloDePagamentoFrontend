@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { reduxForm, Field } from 'redux-form'; //decorator e tag para os campos do form
+
+import { init } from "./billingCycleActions";
 import labelAndInput from "../common/form/labelAndInput";
 
 class BillingCycleForm extends Component{
@@ -32,11 +36,16 @@ class BillingCycleForm extends Component{
                 </div>
                 <div className="box-footer">
                     <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="button" className="btn btn-default"
+                    onClick={this.props.init}>Cancelar</button>
                 </div>
             </form>
         )
     }
 }
 //Liga o formulário ao redux, passando o id do form
-export default reduxForm({form: 'billingCycleForm', destroyOnUnmount: false})(BillingCycleForm)
-//destroyOnUnmount não destrói os dados do formulário quando ele é destruído. Isso permite reusar o formulário sem que haja tantas construções e destruições do form
+BillingCycleForm = reduxForm({form: 'billingCycleForm', destroyOnUnmount: false})(BillingCycleForm)
+
+const mapDispatchToProps = dispatch => bindActionCreators({init}, dispatch)
+
+export default connect(null, mapDispatchToProps)(BillingCycleForm)
