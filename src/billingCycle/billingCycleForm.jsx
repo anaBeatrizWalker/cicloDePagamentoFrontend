@@ -15,8 +15,8 @@ class BillingCycleForm extends Component{
         const sum = (t, v) => t + v 
         return {
             //recupera todos os valores de créditos convertendo a númérico, senão é 0, e retorna um único valor pra soma de créditos
-            sumOfCredits: this.props.credits.map(c => +c.value || 0).reduce(sum), 
-            sumOfDebits: this.props.debts.map(d => +d.value || 0).reduce(sum)
+            sumOfCredits: this.props.credits.map(c => +c.value || 0).reduce(sum),
+            sumOfDebts: this.props.debts.map(d => +d.value || 0).reduce(sum)
         }
     }
 
@@ -24,7 +24,7 @@ class BillingCycleForm extends Component{
         //Processa o form da forma correta
         const { handleSubmit, readOnly, credits, debts } = this.props
 
-        const { sumOfCredits,  sumOfDebits} = this.calculateSummary()
+        const { sumOfCredits,  sumOfDebts} = this.calculateSummary()
 
         return (
             <form role='form' onSubmit={handleSubmit}>
@@ -53,7 +53,7 @@ class BillingCycleForm extends Component{
                         placeholder='Informe o ano'>
                     </Field>
 
-                    <Summary credit={sumOfCredits} debt={sumOfDebits}/>
+                    <Summary credit={sumOfCredits} debt={sumOfDebts}/>
 
                     <ItemList cols='12 6' 
                         list={credits} 
